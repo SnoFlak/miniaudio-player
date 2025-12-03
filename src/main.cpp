@@ -1,10 +1,11 @@
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
+// #include "imgui.h"
+// #include "imgui_impl_glfw.h"
+// #include "imgui_impl_opengl3.h"
 
 #define GLFW_INCLUDE_NONE
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "ui.h"
 
 #include <iostream>
 
@@ -44,64 +45,69 @@ int main() {
         return -1;
     }
 
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+    // IMGUI_CHECKVERSION();
+    // ImGui::CreateContext();
+    // ImGuiIO& io = ImGui::GetIO();
+    // io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init("#version 330");
+    // ImGui_ImplGlfw_InitForOpenGL(window, true);
+    // ImGui_ImplOpenGL3_Init("#version 330");
+
+    init_ui(window);
 
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 0.00f);
-    const ImGuiViewport* viewport = ImGui::GetMainViewport();
-    ImGuiStyle& style = ImGui::GetStyle();
+    // const ImGuiViewport* viewport = ImGui::GetMainViewport();
+    // ImGuiStyle& style = ImGui::GetStyle();
 
     while(!glfwWindowShouldClose(window)) {
-        ImVec2 sidebar_size = ImVec2(viewport->Size.x / 3 < 100.0f ? 100.0f : viewport->Size.x / 3, viewport->Size.y * 0.8 < 240.0f ? 240.0f : viewport->Size.y * 0.8);
-        ImVec2 visualizer_size = ImVec2(0.0f, viewport->Size.y * 0.8 < 240.0f ? 240.0f : viewport->Size.y * 0.8);
-        ImVec2 controlbar_size = ImVec2(0.0f, viewport->Size.y * 0.15 < 45.0f ? 45.0f : viewport->Size.y * 0.15 > 65.0f ? 65.0f : viewport->Size.y * 0.15);
+        // ImVec2 sidebar_size = ImVec2(viewport->Size.x / 3 < 100.0f ? 100.0f : viewport->Size.x / 3, viewport->Size.y * 0.8 < 240.0f ? 240.0f : viewport->Size.y * 0.8);
+        // ImVec2 visualizer_size = ImVec2(0.0f, viewport->Size.y * 0.8 < 240.0f ? 240.0f : viewport->Size.y * 0.8);
+        // ImVec2 controlbar_size = ImVec2(0.0f, viewport->Size.y * 0.15 < 45.0f ? 45.0f : viewport->Size.y * 0.15 > 65.0f ? 65.0f : viewport->Size.y * 0.15);
         glfwPollEvents();
 
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
+        draw_ui();
+        // ImGui_ImplOpenGL3_NewFrame();
+        // ImGui_ImplGlfw_NewFrame();
+        // ImGui::NewFrame();
 
-        ImGui::SetNextWindowPos(viewport->Pos);
-        ImGui::SetNextWindowSize(viewport->Size);
-        ImGui::Begin("Hello ImGui", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+        // ImGui::SetNextWindowPos(viewport->Pos);
+        // ImGui::SetNextWindowSize(viewport->Size);
+        // ImGui::Begin("Hello ImGui", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
-        // if (ImGui::Button("Play", ImVec2(75.0f, 25.0f))) {
-        //     std::cout << "Button pressed" << std::endl;
-        // }
-        ImGui::BeginChild("Sidebar", sidebar_size, ImGuiChildFlags_Borders);
-        ImGui::Text("test text");
-        ImGui::EndChild();
-        ImGui::SameLine();
-        ImGui::BeginChild("Visualizer", visualizer_size, ImGuiChildFlags_Borders);
-        ImGui::Text("test text");
-        ImGui::EndChild();
+        // // if (ImGui::Button("Play", ImVec2(75.0f, 25.0f))) {
+        // //     std::cout << "Button pressed" << std::endl;
+        // // }
+        // ImGui::BeginChild("Sidebar", sidebar_size, ImGuiChildFlags_Borders);
+        // ImGui::Text("test text");
+        // ImGui::EndChild();
+        // ImGui::SameLine();
+        // ImGui::BeginChild("Visualizer", visualizer_size, ImGuiChildFlags_Borders);
+        // ImGui::Text("test text");
+        // ImGui::EndChild();
 
-        ImGui::BeginChild("ControlBar", controlbar_size, ImGuiChildFlags_Borders);
-        ImGui::Text("test text");
-        ImGui::EndChild();
+        // ImGui::BeginChild("ControlBar", controlbar_size, ImGuiChildFlags_Borders);
+        // ImGui::Text("test text");
+        // ImGui::EndChild();
 
-        ImGui::End();
-        // ImGui::ShowDemoWindow();
+        // ImGui::End();
 
-        ImGui::Render();
+        // ImGui::Render();
+
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
-        glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        // ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        render_draw_data();
 
         glfwSwapBuffers(window);
     }
 
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
+    // ImGui_ImplOpenGL3_Shutdown();
+    // ImGui_ImplGlfw_Shutdown();
+    // ImGui::DestroyContext();
+    uninit_ui();
     glfwDestroyWindow(window);
     glfwTerminate();
 

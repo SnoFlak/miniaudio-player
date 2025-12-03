@@ -22,6 +22,7 @@ set(IMGUI_SOURCES
 add_executable(miniaudio-player
     src/main.cpp
     src/glad.c
+    src/ui.cpp
     ${IMGUI_SOURCES} 
 )
 
