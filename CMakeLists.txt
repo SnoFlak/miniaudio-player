@@ -23,6 +23,9 @@ add_executable(miniaudio-player
     src/main.cpp
     src/glad.c
     src/ui.cpp
+    src/visualizer_window.cpp
+    src/directory_window.cpp
+    src/control_window.cpp
     ${IMGUI_SOURCES} 
 )
 

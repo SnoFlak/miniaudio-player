@@ -2,6 +2,11 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
+#include "control_window.h"
+#include "directory_window.h"
+#include "visualizer_window.h"
+
+
 void init_ui(GLFWwindow* window) {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -23,8 +28,6 @@ void draw_ui() {
     ImGuiStyle& style = ImGui::GetStyle();
     ImVec2 sidebar_size = ImVec2(viewport->Size.x / 3 < 100.0f ? 100.0f : viewport->Size.x / 3, viewport->Size.y * 0.8 < 240.0f ? 240.0f : viewport->Size.y * 0.8);
     ImVec2 visualizer_size = ImVec2(0.0f, viewport->Size.y * 0.8 < 240.0f ? 240.0f : viewport->Size.y * 0.8);
-    ImVec2 controlbar_size = ImVec2(0.0f, viewport->Size.y * 0.15 < 45.0f ? 45.0f : viewport->Size.y * 0.15 > 65.0f ? 65.0f : viewport->Size.y * 0.15);
-
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -33,28 +36,13 @@ void draw_ui() {
     ImGui::SetNextWindowSize(viewport->Size);
     ImGui::Begin("Hello ImGui", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
-    // if (ImGui::Button("Play", ImVec2(75.0f, 25.0f))) {
-    //     std::cout << "Button pressed" << std::endl;
-    // }
-    ImGui::BeginChild("Sidebar", sidebar_size, ImGuiChildFlags_Borders);
-    ImGui::Text("test text");
-
-    
-
-    ImGui::EndChild();
+    draw_directory_window(viewport->Size.x, viewport->Size.y);
     ImGui::SameLine();
-    ImGui::BeginChild("Visualizer", visualizer_size, ImGuiChildFlags_Borders);
-    ImGui::Text("test text");
-    ImGui::EndChild();
+    draw_visualizer_window(viewport->Size.x, viewport->Size.y);
 
-    ImGui::BeginChild("ControlBar", controlbar_size, ImGuiChildFlags_Borders);
-    ImGui::Text("test text");
-    ImGui::EndChild();
-
-    ImGui::ShowDemoWindow();
-
-    ImGui::End();
+    draw_control_window(viewport->Size.x, viewport->Size.y);
     // ImGui::ShowDemoWindow();
+    ImGui::End();
 
     ImGui::Render();
 }

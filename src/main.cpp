@@ -66,32 +66,6 @@ int main() {
         glfwPollEvents();
 
         draw_ui();
-        // ImGui_ImplOpenGL3_NewFrame();
-        // ImGui_ImplGlfw_NewFrame();
-        // ImGui::NewFrame();
-
-        // ImGui::SetNextWindowPos(viewport->Pos);
-        // ImGui::SetNextWindowSize(viewport->Size);
-        // ImGui::Begin("Hello ImGui", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-
-        // // if (ImGui::Button("Play", ImVec2(75.0f, 25.0f))) {
-        // //     std::cout << "Button pressed" << std::endl;
-        // // }
-        // ImGui::BeginChild("Sidebar", sidebar_size, ImGuiChildFlags_Borders);
-        // ImGui::Text("test text");
-        // ImGui::EndChild();
-        // ImGui::SameLine();
-        // ImGui::BeginChild("Visualizer", visualizer_size, ImGuiChildFlags_Borders);
-        // ImGui::Text("test text");
-        // ImGui::EndChild();
-
-        // ImGui::BeginChild("ControlBar", controlbar_size, ImGuiChildFlags_Borders);
-        // ImGui::Text("test text");
-        // ImGui::EndChild();
-
-        // ImGui::End();
-
-        // ImGui::Render();
 
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
