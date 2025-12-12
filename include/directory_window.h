@@ -1,3 +1,8 @@
 #include <imgui.h>
+#include <filesystem>
+#include <cstdlib>
+#include <vector>
 
-void draw_directory_window(float x_size, float y_size);
+void drawDirectoryWindow(float x_size, float y_size);
+void searchDirectory();
+void buildNodesFromCachedFiles();

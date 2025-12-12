@@ -36,11 +36,11 @@ void draw_ui() {
     ImGui::SetNextWindowSize(viewport->Size);
     ImGui::Begin("Hello ImGui", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
-    draw_directory_window(viewport->Size.x, viewport->Size.y);
+    drawDirectoryWindow(viewport->Size.x, viewport->Size.y);
     ImGui::SameLine();
-    draw_visualizer_window(viewport->Size.x, viewport->Size.y);
+    drawVisualizerWindow(viewport->Size.x, viewport->Size.y);
 
-    draw_control_window(viewport->Size.x, viewport->Size.y);
+    drawControlWindow(viewport->Size.x, viewport->Size.y);
     // ImGui::ShowDemoWindow();
     ImGui::End();
 
