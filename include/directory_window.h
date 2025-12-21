@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <vector>
 
-void drawDirectoryWindow(float x_size, float y_size);
+class PlaybackManager;
+
+void drawDirectoryWindow(float x_size, float y_size, PlaybackManager& playback_manager);
 void searchDirectory();
-void buildNodesFromCachedFiles();
+void buildNodesFromCachedFiles(PlaybackManager& playback_manager);

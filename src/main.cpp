@@ -2,6 +2,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "ui.h"
+#include "playback_manager.h"
 
 #include <iostream>
 
@@ -43,12 +44,14 @@ int main() {
 
     init_ui(window);
 
+    PlaybackManager playback_manager;
+
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 0.00f);
 
     while(!glfwWindowShouldClose(window)) {
         glfwPollEvents();
 
-        draw_ui();
+        draw_ui(playback_manager);
 
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);

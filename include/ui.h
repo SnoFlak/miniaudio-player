@@ -4,7 +4,9 @@
 
 #include <GLFW/glfw3.h>
 
+class PlaybackManager;
+
 void init_ui(GLFWwindow* window);
 void uninit_ui();
-void draw_ui();
+void draw_ui(PlaybackManager& playback_manager);
 void render_draw_data();

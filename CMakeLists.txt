@@ -26,6 +26,7 @@ add_executable(miniaudio-player
     src/visualizer_window.cpp
     src/directory_window.cpp
     src/control_window.cpp
+    src/playback_manager.cpp
     ${IMGUI_SOURCES} 
 )
 

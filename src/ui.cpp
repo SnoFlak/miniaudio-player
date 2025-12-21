@@ -5,7 +5,13 @@
 #include "control_window.h"
 #include "directory_window.h"
 #include "visualizer_window.h"
+#include "playback_manager.h"
 
+// static PlaybackManager g_playback_manager;
+
+// void ui_set_playback_manager(PlaybackManager* pm) {
+//     g_playback_manager = *pm;
+// }
 
 void init_ui(GLFWwindow* window) {
     IMGUI_CHECKVERSION();
@@ -23,7 +29,7 @@ void uninit_ui() {
     ImGui::DestroyContext();
 }
 
-void draw_ui() {
+void draw_ui(PlaybackManager& playback_manager) {
     const ImGuiViewport* viewport = ImGui::GetMainViewport();
     ImGuiStyle& style = ImGui::GetStyle();
     ImVec2 sidebar_size = ImVec2(viewport->Size.x / 3 < 100.0f ? 100.0f : viewport->Size.x / 3, viewport->Size.y * 0.8 < 240.0f ? 240.0f : viewport->Size.y * 0.8);
@@ -36,7 +42,7 @@ void draw_ui() {
     ImGui::SetNextWindowSize(viewport->Size);
     ImGui::Begin("Hello ImGui", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
-    drawDirectoryWindow(viewport->Size.x, viewport->Size.y);
+    drawDirectoryWindow(viewport->Size.x, viewport->Size.y, playback_manager);
     ImGui::SameLine();
     drawVisualizerWindow(viewport->Size.x, viewport->Size.y);
 
