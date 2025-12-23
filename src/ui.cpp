@@ -46,7 +46,7 @@ void draw_ui(PlaybackManager& playback_manager) {
     ImGui::SameLine();
     drawVisualizerWindow(viewport->Size.x, viewport->Size.y);
 
-    drawControlWindow(viewport->Size.x, viewport->Size.y);
+    drawControlWindow(viewport->Size.x, viewport->Size.y, playback_manager);
     // ImGui::ShowDemoWindow();
     ImGui::End();
 

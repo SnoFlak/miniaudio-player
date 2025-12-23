@@ -106,7 +106,7 @@ void buildNodesFromCachedFiles(PlaybackManager& playback_manager) {
                     //load music file here
                     std::cout << "[UI] selected music file: " << DWState.discovered_files[i].file_name << std::endl;
                     std::cout << "[UI] passing filepath to PlaybackManager: " << DWState.discovered_files[i].file_path.c_str() << std::endl;
-                    playback_manager.Play(DWState.discovered_files[i].file_path.c_str());
+                    playback_manager.Play(DWState.discovered_files[i].file_path.c_str(), DWState.discovered_files[i].file_name.c_str());
                 }
                 ImGui::PopID();
                 break;
