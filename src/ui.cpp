@@ -7,12 +7,6 @@
 #include "visualizer_window.h"
 #include "playback_manager.h"
 
-// static PlaybackManager g_playback_manager;
-
-// void ui_set_playback_manager(PlaybackManager* pm) {
-//     g_playback_manager = *pm;
-// }
-
 void init_ui(GLFWwindow* window) {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();

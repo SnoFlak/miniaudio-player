@@ -31,17 +31,11 @@ void drawDirectoryWindow(float x_size, float y_size, PlaybackManager& playback_m
     ImGui::BeginChild("Sidebar", directory_size, ImGuiChildFlags_Borders);
     if(ImGui::TreeNode("Music")) {
         if(DWState.discovered_files.size() == 0) {
-            // search for files in Music directory. If no files/directories are found, a CachedFile with type EMPTY will populate the vector
             searchDirectory();
-
-            //draw tree nodes for files
             buildNodesFromCachedFiles(playback_manager);
-
         } else if(DWState.discovered_files[0].type == EMPTY){
-            // search has been completed already, repo is empty. Wait for user to manually refresh directory.
             ImGui::Text("No Files/Directories Found...");
         } else {
-            // draw tree nodes for files
             buildNodesFromCachedFiles(playback_manager);
         }  
         ImGui::TreePop();
@@ -83,7 +77,7 @@ void searchDirectory() {
             DIcount += 1;
         }
 
-        if(DIcount == 0) { // directory_iterator couldn't find files in path, so populate an CachedFile with type EMPTY to handle checks in drawDirectoryWindow
+        if(DIcount == 0) { // directory_iterator couldn't find files in path, so populate a CachedFile with type EMPTY to handle checks in drawDirectoryWindow
             DWState.discovered_files[0] = {std::filesystem::path(""), EMPTY};
         }
 
