@@ -19,9 +19,16 @@ void drawControlWindow(float x_size, float y_size, PlaybackManager& playback_man
         }
     }
 
+    int cur_min = timeline_value / 60;
+    int cur_sec = (int)timeline_value % 60;
+    int track_min = playback_manager.cur_sound_length / 60;
+    int track_sec = (int)playback_manager.cur_sound_length % 60;
+
     ImGui::SameLine();
     ImGui::BeginChild("TitleSeek", ImVec2(0.0f, 0.0f));
     ImGui::Text(playback_manager.file_name);
+    ImGui::SameLine();
+    ImGui::Text("%02d:%02d | %02d:%02d", cur_min, cur_sec, track_min, track_sec);
 
     //if we're playing, we should be updating the timeline_value with GrabTime()
     //HOWEVER, if IsItemActive(), we want to stop this.
@@ -55,11 +62,3 @@ void drawControlWindow(float x_size, float y_size, PlaybackManager& playback_man
 
     ImGui::EndChild();
 }
-
-// void GetPlayTime(PlaybackManager& playback_manager) {
-//     ma_result res = ma_sound_get_cursor_in_seconds(playback_manager.GrabSound(), playback_manager.GrabTime());
-//     if (res != MA_SUCCESS) {
-//         std::cout << "[ControlWindow] ERROR: failed to GetPlayTime" << std::endl;
-//         return;
-//     }
-// }
